@@ -1,0 +1,6 @@
+services:
+  toneconnect:
+    build: .
+    ports:
+      - '80:80'
+    restart: always
