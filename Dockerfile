@@ -4,7 +4,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 ENV NODE_OPTIONS="--max-old-space-size=4096"
-ENV VITE_API_URL="http://54.180.247.88"
+ENV VITE_API_BASE_URL="http://54.180.247.88"
 RUN npm run build
 
 FROM nginx:alpine
