@@ -1,8 +1,19 @@
-# React + Vite
+# ToneConnect (FE)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**ToneConnect**는 대학 환경에서 교수와 학생 간의 소통을 원활하게 돕기 위해 개발된 웹 기반 커뮤니케이션 보조 도구입니다. 이 프로젝트는 세대 차이와 표현 방식 차이로 인한 오해를 줄이고, 더 나은 학습 환경을 조성하는 것을 목표로 합니다.
 
-Currently, two official plugins are available:
+## 개발 배경 및 필요성
+교수와 학생 사이의 세대적 차이로 인해 소통이 어려워지며, 의도하지 않은 오해나 갈등이 발생할 수 있습니다. ToneConnect는 이러한 문제를 해결하여 교수와 학생이 서로 이해할 수 있는 표현 방식과 단어를 추천함으로써, 원활한 의사소통을 지원하고자 합니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 주요 기능
+1. **멘트 교정 기능**: 학생이 교수에게 메시지를 보낼 때 정중한 어체와 적절한 표현을 자동으로 추천하여 세대 간 커뮤니케이션 갭을 해소합니다.
+2. **세대별 맞춤 표현**: MZ 세대의 디지털 친화적 성향과 교수님의 예의 있는 대화 방식을 고려한 맞춤형 멘트 수정 기능을 제공합니다.
+
+## 기대 효과
+- **세대 간 이해 증진**: 서로의 관점을 반영한 어휘와 표현으로 오해와 불편함을 줄입니다.
+- **소통 효율성 강화**: 교수와 학생 간의 대화 효율성을 높여 학습에 집중할 수 있는 환경을 조성합니다.
+- **유대감 형성**: 교수와 학생 간 신뢰감을 쌓고 원활한 소통을 촉진하여 유대감을 형성합니다.
+
+## 팀 정보
+**팀명**: MZ공돌스  
+**팀원**: 이동현, 류성호, 권다훈, 최윤호, 김윤지
