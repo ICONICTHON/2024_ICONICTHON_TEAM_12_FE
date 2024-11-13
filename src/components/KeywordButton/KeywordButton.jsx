@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import "./styles.css";
 import convertNewKeywordString from "../../utils/convertNewKeywordString";
 
 /* eslint-disable react/prop-types */
