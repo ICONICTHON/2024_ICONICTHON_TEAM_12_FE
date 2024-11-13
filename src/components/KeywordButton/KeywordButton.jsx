@@ -6,9 +6,10 @@ import convertNewKeywordString from "../../utils/convertNewKeywordString";
 /* eslint-disable react/prop-types */
 export default function KeywordButton({
   content,
-  selectedKeywords,
   setSelectedKeywords,
+  keywords,
   setKeywords,
+  disabled,
 }) {
   const [clicked, setClicked] = useState(false);
 
@@ -36,25 +37,22 @@ export default function KeywordButton({
   const clickHandler = async () => {
     const currentlyClicked = clicked;
 
+    setClicked(!currentlyClicked);
     if (!currentlyClicked) {
-      if (selectedKeywords.length >= 5) {
-        console.log(selectedKeywords);
-        alert("키워드는 최대 5개까지 설정 가능합니다.");
-      } else {
-        setClicked(!currentlyClicked);
-        setSelectedKeywords((prev) => {
-          return [...prev, content];
-        });
+      setSelectedKeywords((prev) => {
+        return [...prev, content];
+      });
 
-        const data = await fetchNewKeyword();
-        const newKeywords = convertNewKeywordString(data?.text);
+      const data = await fetchNewKeyword();
+      const newKeywords = convertNewKeywordString(data?.text);
+      const filteredNewKeywords = newKeywords.filter(
+        (value) => !keywords.flat().includes(value)
+      );
 
-        setKeywords((prev) => {
-          return [...new Set([...prev, ...newKeywords])];
-        });
-      }
+      setKeywords((prev) => {
+        return [...prev, filteredNewKeywords];
+      });
     } else {
-      setClicked(!currentlyClicked);
       setSelectedKeywords((prev) => {
         return prev.filter((item) => item !== content);
       });
@@ -64,9 +62,14 @@ export default function KeywordButton({
   return (
     <button
       className={`keyword-btn ${
-        clicked ? "bg-blue-500 text-white" : "bg-gray-100"
+        clicked
+          ? "bg-blue-500 text-white"
+          : disabled
+          ? "bg-gray-50 text-gray-200"
+          : "bg-gray-100"
       } p-3 rounded-sm`}
       onClick={clickHandler}
+      disabled={disabled}
     >
       {content}
     </button>
