@@ -46,28 +46,35 @@ export default function Home() {
       <div className="w-10/12 mx-auto">
         <div>키워드 선택</div>
         <div className="flex gap-x-3 gap-y-2 flex-wrap">
-          {keywords.map((group, index) => (
-            <div
-              className="flex gap-x-3 w-full flex-wrap"
-              key={`keyword_group_${index}`}
-            >
-              {group?.map((keyword, i) => (
-                <KeywordButton
-                  key={`keyword_${index}_${i}`}
-                  content={keyword}
-                  selectedKeywords={selectedKeywords}
-                  setSelectedKeywords={setSelectedKeywords}
-                  keywords={keywords}
-                  setKeywords={setKeywords}
-                  disabled={
-                    !selectedKeywords.includes(keyword) &&
-                    (firstEmptyGroupIndex === -1 ||
-                      index < firstEmptyGroupIndex)
-                  }
-                />
-              ))}
-            </div>
-          ))}
+          {keywords.map((group, index) => {
+            const isGroupSelected = group.some((keyword) =>
+              selectedKeywords.includes(keyword)
+            );
+
+            return (
+              <div
+                className="flex gap-x-3 w-full flex-wrap"
+                key={`keyword_group_${index}`}
+              >
+                {group.map((keyword, i) => (
+                  <KeywordButton
+                    key={`keyword_${index}_${i}`}
+                    content={keyword}
+                    selectedKeywords={selectedKeywords}
+                    setSelectedKeywords={setSelectedKeywords}
+                    keywords={keywords}
+                    setKeywords={setKeywords}
+                    disabled={
+                      !selectedKeywords.includes(keyword) &&
+                      (isGroupSelected ||
+                        (firstEmptyGroupIndex !== -1 &&
+                          index > firstEmptyGroupIndex))
+                    }
+                  />
+                ))}
+              </div>
+            );
+          })}
         </div>
         <textarea
           className="w-full h-40 p-2 mt-4 border rounded"

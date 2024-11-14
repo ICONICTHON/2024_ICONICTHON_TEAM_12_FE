@@ -6,6 +6,7 @@ import convertNewKeywordString from "../../utils/convertNewKeywordString";
 /* eslint-disable react/prop-types */
 export default function KeywordButton({
   content,
+  selectedKeywords,
   setSelectedKeywords,
   keywords,
   setKeywords,
@@ -36,12 +37,10 @@ export default function KeywordButton({
 
   const clickHandler = async () => {
     const currentlyClicked = clicked;
-
     setClicked(!currentlyClicked);
+
     if (!currentlyClicked) {
-      setSelectedKeywords((prev) => {
-        return [...prev, content];
-      });
+      setSelectedKeywords((prev) => [...prev, content]);
 
       const data = await fetchNewKeyword();
       const newKeywords = convertNewKeywordString(data?.text);
@@ -49,12 +48,22 @@ export default function KeywordButton({
         (value) => !keywords.flat().includes(value)
       );
 
-      setKeywords((prev) => {
-        return [...prev, filteredNewKeywords];
-      });
+      setKeywords((prev) => [...prev, filteredNewKeywords]);
     } else {
-      setSelectedKeywords((prev) => {
-        return prev.filter((item) => item !== content);
+      const newSelectedKeywords = selectedKeywords.filter(
+        (item) => item !== content
+      );
+      setSelectedKeywords(newSelectedKeywords);
+
+      const levelIndex = keywords.findIndex((level) => level.includes(content));
+
+      setKeywords((prev) => {
+        return prev.filter((level, index) => {
+          if (index <= levelIndex) {
+            return true;
+          }
+          return level.some((keyword) => newSelectedKeywords.includes(keyword));
+        });
       });
     }
   };

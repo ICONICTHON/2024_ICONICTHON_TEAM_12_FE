@@ -1,9 +1,13 @@
 import { useState, useRef, useEffect } from "react";
+import notice from "./notice.js";
+import "./styles.css";
 
 export default function MZ() {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const [originText, setOriginText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
+  const [tabState, setTabState] = useState("notice");
+  const [loading, setLoading] = useState(false);
 
   const originTextRef = useRef(null);
   const translatedTextRef = useRef(null);
@@ -24,6 +28,9 @@ export default function MZ() {
   }, [translatedText]);
 
   const fetchNewText = async () => {
+    if (loading) return;
+
+    setLoading(true);
     try {
       const res = await fetch(baseUrl + "/translate/professor/", {
         method: "POST",
@@ -31,7 +38,7 @@ export default function MZ() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: originText,
+          message: notice.text,
         }),
       });
 
@@ -40,34 +47,73 @@ export default function MZ() {
     } catch (error) {
       alert("실패");
       setTranslatedText("");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleClick = () => {
-    fetchNewText();
+  const handleTabClick = (e) => {
+    if (e.target.innerHTML === "공지사항") setTabState("notice");
+    else {
+      setTabState("mz");
+      fetchNewText();
+    }
   };
 
   return (
     <section className="mt-32 h-full">
       <div className="w-10/12 mx-auto">
-        <textarea
-          ref={originTextRef}
-          className="w-full h-40 p-2 mt-4 border rounded"
-          value={originText}
-          onChange={(e) => setOriginText(e.target.value)}
-        />
-        <button
-          className="mt-12 p-3 rounded-sm bg-gray-300"
-          onClick={handleClick}
-        >
-          공지사항 변환하기
-        </button>
-        <textarea
-          ref={translatedTextRef}
-          className="w-full h-40 p-2 mt-4 border rounded"
-          value={translatedText}
-          onChange={(e) => setTranslatedText(e.target.value)}
-        />
+        <div>
+          <div className="font-bold text-lg">학습 정보</div>
+          <div className="flex pt-10 w-full">
+            <button
+              className={`px-6 py-2 border ${
+                tabState === "notice"
+                  ? "bg-white border-b-transparent"
+                  : "bg-gray-100"
+              }`}
+              onClick={handleTabClick}
+            >
+              공지사항
+            </button>
+            <button
+              className={`px-6 py-2 border ${
+                tabState === "mz"
+                  ? "bg-white border-b-transparent"
+                  : "bg-gray-100"
+              }`}
+              onClick={handleTabClick}
+            >
+              MZ어 변환
+            </button>
+            <div className="flex-1 border-b" />
+          </div>
+
+          <div className="w-full pt-10">
+            <div className="w-full bg-amber-200 py-3 px-3">시험 공지사항</div>
+            <div className="flex px-3 py-3 custom-shadow">
+              <div className="flex-1">작성자: </div>
+              <div className="flex-1">작성일: </div>
+              <div className="flex-1">조회수: </div>
+            </div>
+            {tabState === "notice" && (
+              <div className="flex px-10 py-10 custom-shadow whitespace-pre-line">
+                {notice.text}
+              </div>
+            )}
+            {tabState === "mz" && (
+              <div className="flex px-10 py-10 w-full custom-shadow whitespace-pre-line">
+                {loading ? (
+                  <div className="spinner-container w-full flex items-center justify-center">
+                    <div className="spinner"></div>
+                  </div>
+                ) : (
+                  translatedText
+                )}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );
