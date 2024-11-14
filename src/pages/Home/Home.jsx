@@ -67,8 +67,11 @@ export default function Home() {
         </div>
 
         {/* Keyword Selection */}
+        <div className="keywords-title">키워드 선택
+        <button className="generate-button" onClick={handleClick}>생성</button>
+        </div>
         <div className="keywords-section">
-          <div className="keywords-title">키워드 선택</div>
+          
           <div className="flex gap-x-3 gap-y-2 flex-wrap">
         {keywords.map((group, index) => (
           <div className="flex gap-x-3 w-full flex-wrap" key={`keyword_group_${index}`}>
@@ -88,8 +91,8 @@ export default function Home() {
             ))}
           </div>
         ))}
-      </div>
-          <button className="generate-button" onClick={handleClick}>생성</button>
+        </div>
+          
         </div>
 
         {/* Text Area */}

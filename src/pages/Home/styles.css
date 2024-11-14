@@ -15,7 +15,6 @@
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
   }
   
   /* Style for the TONE CONNECT logo image */
@@ -28,6 +27,10 @@
   .ARS_logo {
     height: 40px; /* Adjust as needed */
     object-fit: contain;
+    align-self: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   /* Content styling */
@@ -43,7 +46,7 @@
   }
   
   .label {
-    width: 60px;
+    width: 80px;
     background-color: #f7e1b5;
     padding: 10px;
     font-weight: bold;
@@ -67,10 +70,12 @@
   }
   
   .keywords-title {
+    display: flex; 
     font-weight: bold;
     font-size: 1rem;
     color: #333;
     margin-right: 10px;
+    flex-shrink: 0
   }
   
   .keywords-buttons {
