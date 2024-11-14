@@ -18,7 +18,7 @@ export default function Header() {
           <img src="/font_logo.svg" width={100} height={100 / 2.344} />
         </div>
         <div className="flex-1">
-          <ul className="flex gap-8 justify-center">
+          <ul className="flex gap-8 justify-center text-xs md:text-base">
             <HeaderButton content="보이는 ARS" to="/home" />
             <HeaderButton content="M-Z하다" to="/mz" />
             <HeaderButton content="메일 수정 서비스" to="/evaluate" />

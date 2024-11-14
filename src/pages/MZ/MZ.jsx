@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+import { BsChatLeftTextFill } from "react-icons/bs";
 import notice from "./notice.js";
 import "./styles.css";
 
 export default function MZ() {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  const [originText, setOriginText] = useState("");
+  const [originText, setOriginText] = useState(notice.text);
   const [translatedText, setTranslatedText] = useState("");
   const [tabState, setTabState] = useState("notice");
   const [loading, setLoading] = useState(false);
@@ -38,7 +39,7 @@ export default function MZ() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: notice.text,
+          message: originText,
         }),
       });
 
@@ -62,7 +63,7 @@ export default function MZ() {
 
   return (
     <section className="mt-32 h-full">
-      <div className="w-10/12 mx-auto">
+      <div className="w-11/12 md:w-8/12 mx-auto">
         <div>
           <div className="font-bold text-lg">학습 정보</div>
           <div className="flex pt-10 w-full">
@@ -90,19 +91,22 @@ export default function MZ() {
           </div>
 
           <div className="w-full pt-10">
-            <div className="w-full bg-amber-200 py-3 px-3">시험 공지사항</div>
-            <div className="flex px-3 py-3 custom-shadow">
-              <div className="flex-1">작성자: </div>
-              <div className="flex-1">작성일: </div>
-              <div className="flex-1">조회수: </div>
+            <div className="w-full bg-amber-200 py-3 px-6 flex gap-3 items-center">
+              <BsChatLeftTextFill />
+              <span className="font-bold">시험 공지사항</span>
+            </div>
+            <div className="flex px-3 py-3 custom-shadow flex-col md:flex-row">
+              <div className="flex-1">작성자: XXX 교수님</div>
+              <div className="flex-1">작성일: 2024-11-15</div>
+              <div className="flex-1">조회수: 60</div>
             </div>
             {tabState === "notice" && (
-              <div className="flex px-10 py-10 custom-shadow whitespace-pre-line">
+              <div className="flex px-3 py-3 md:px-10 md:py-10 custom-shadow whitespace-pre-line">
                 {notice.text}
               </div>
             )}
             {tabState === "mz" && (
-              <div className="flex px-10 py-10 w-full custom-shadow whitespace-pre-line">
+              <div className="flex px-3 py-3 md:px-10 md:py-10 w-full custom-shadow whitespace-pre-line">
                 {loading ? (
                   <div className="spinner-container w-full flex items-center justify-center">
                     <div className="spinner"></div>
