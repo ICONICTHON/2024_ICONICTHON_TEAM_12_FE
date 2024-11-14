@@ -73,7 +73,9 @@ export default function Home() {
           </div>
           <div className="input-group">
             <div className="label">제목</div>
-            <div className="input-box"></div>
+            <div className="input-box">
+              <input className="input-text" type="text" />
+            </div>
           </div>
 
           {/* Keyword Selection */}
