@@ -1,0 +1,125 @@
+/* Main container styling */
+.box {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header styling */
+  .header {
+    background: linear-gradient(to right, #fbb03b, #ed6a00);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Style for the TONE CONNECT logo image */
+  .TONE_CONNECT {
+    height: 40px; /* Adjust as needed */
+    object-fit: contain;
+  }
+  
+  /* Style for the header title image */
+  .ARS_logo {
+    height: 40px; /* Adjust as needed */
+    object-fit: contain;
+  }
+  
+  /* Content styling */
+  .content {
+    padding: 20px;
+  }
+  
+  /* Input group styling */
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    width: 60px;
+    background-color: #f7e1b5;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .input-box {
+    flex: 1;
+    background-color: #f1f1f1;
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 4px;
+  }
+  
+  /* Keywords section styling */
+  .keywords-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .keywords-title {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .keywords-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .generate-button {
+    margin-left: auto;
+    background-color: #fbb03b;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .generate-button:hover {
+    background-color: #ed6a00;
+  }
+  
+  /* Text area styling */
+  .text-area {
+    width: 100%;
+    height: 150px;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    font-size: 1rem;
+  }
+  
+  /* Send button styling */
+  .send-button {
+    width: 100%;
+    background-color: #fbb03b;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .send-button:hover {
+    background-color: #ed6a00;
+  }
+  
